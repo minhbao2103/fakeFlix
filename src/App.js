@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -12,10 +12,19 @@ const App = () => {
   const [search, setSearch] = useState('')
   const [movieList, setMovieList] = useState([])
   const [timeoutId,setTimeoutId] = useState()
-
-
-
+  const [showMovie,setShowMovie] = useState([])
   const API_KEY = '45465dff'
+  const SHOW_MOVIE_KEY = '47cb32d7a40a71c6ac4940b6e81611d0'
+  const postApi = 'https://api.themoviedb.org/3/movie/popular?api_key=47cb32d7a40a71c6ac4940b6e81611d0&language=en-US&page=1'
+   
+  fetch(postApi)
+   .then((res) => {
+    return res.json()
+   })
+   .then((post) => {
+    console.log(post.results);
+   })
+
   const fetchData = async(searchString) => {
     const response = await axios.get(`https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`)
       setMovieList(response.data.Search)
@@ -31,6 +40,7 @@ const App = () => {
     clearTimeout(timeoutId)
   }
 
+
   return (
     <>
       <Header handleInputChange={handleInputChange} search={search}/>
@@ -40,9 +50,10 @@ const App = () => {
     ? movieList.map((movie, index) => (
       <MovieComponent movie={movie} key={index}  />
     ))
-    : "No Movie Search"}
+    : ""}
    </MovieListContainer>
-      {/* <MainContent /> */}
+
+ <MainContent />
     </>
   )
 }
@@ -51,9 +62,10 @@ export default App
 
 const MovieListContainer = styled.div`
     display:flex;
-    flex-direction: row;
     flex-wrap: wrap;
     padding: 28px;
     justify-content: space-evenly;
     gap: 24px;
+    height: 100%;
+    background: black;
     `

@@ -39,6 +39,7 @@ const MovieRowContainer = styled.div`
     color: white;
     width: 100%;
     height: 100%;
+    overflow: scroll;
 
     .heading {
         font-size: 16px;
@@ -55,6 +56,7 @@ const MovieSlider = styled.div`
     padding:8px 0px;
     scroll-behavior: smooth;
     flex-wrap: wrap;
+    overflow: auto;
 
     .movieItem {
         transform: scale(1);

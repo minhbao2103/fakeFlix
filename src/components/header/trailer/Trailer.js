@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Trailer = () => {
   return (
     <TrailerContent>
-    <H1Title>
+     <H1Title>
          <h1>Resident Evil 2</h1>
     </H1Title>
     <TagP>
@@ -14,7 +14,7 @@ const Trailer = () => {
       <ReactPlayer 
         url='https://vimeo.com/291070285'
         playing={true}
-        height='260px'
+        height='100%'
         width='100%'
         loop={true}
         controls={false}
@@ -34,8 +34,8 @@ const H1Title = styled.div`
   position: absolute;
   margin: 2px;
   padding: 4px;
-  top: 40px;
-  font-size: 12px;
+  top: 10px;
+  font-size: 10px;
   opacity: 0.7;
 `
 const TagP = styled.div`
@@ -43,7 +43,7 @@ const TagP = styled.div`
   width: 220px;
   margin: 2px;
   padding: 4px;
-  top: 80px;
-  font-size: 10px;
+  top: 40px;
+  font-size: 8px;
   opacity: 0.7;
 `
