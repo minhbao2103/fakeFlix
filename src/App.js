@@ -32,9 +32,7 @@ const App = () => {
     .then((post) => {
       setShowLatest(post.results);
     })
-  },[])
 
-  useEffect(() => {
     fetch(upComing)
     .then((res) => {
      return res.json()
@@ -42,9 +40,7 @@ const App = () => {
     .then((post) => {
       setShowUpComing(post.results);
     })
-  },[])
 
-  useEffect(() => {
     fetch(topRating)
     .then((res) => {
      return res.json()
@@ -52,9 +48,7 @@ const App = () => {
     .then((post) => {
       setShowTop(post.results);
     })
-  },[])
 
-  useEffect(() => {
     fetch(postApi)
     .then((res) => {
      return res.json()
@@ -63,6 +57,7 @@ const App = () => {
       setShowMovie(post.results);
     })
   },[])
+
 
   
   const fetchData = async(searchString) => {

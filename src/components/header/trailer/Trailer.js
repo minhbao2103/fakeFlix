@@ -6,13 +6,13 @@ const Trailer = () => {
   return (
     <TrailerContent>
      <H1Title>
-         <h1>Resident Evil 2</h1>
+         <h1>Insidious Chapter 2</h1>
     </H1Title>
     <TagP>
-    <p>A deadly virus engulfs the residents of Raccoon City in September of 1998, plunging the city into chaos as flesh eating zombies roam the </p>
+    <p>In 1986, Lorraine Lambert summons demonologist Elise Rainier to help her son Josh, who is being followed by the spirit of an old woman.</p>
     </TagP>
       <ReactPlayer 
-        url='https://vimeo.com/291070285'
+        url='https://vimeo.com/73046716'
         playing={true}
         height='100%'
         width='100%'
@@ -34,7 +34,7 @@ const H1Title = styled.div`
   position: absolute;
   margin: 2px;
   padding: 4px;
-  top: 10px;
+  top: 0px;
   font-size: 10px;
   opacity: 0.7;
 `
@@ -43,7 +43,7 @@ const TagP = styled.div`
   width: 220px;
   margin: 2px;
   padding: 4px;
-  top: 40px;
+  top: 30px;
   font-size: 8px;
   opacity: 0.7;
 `
