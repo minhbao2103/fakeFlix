@@ -12,19 +12,59 @@ const App = () => {
   const [search, setSearch] = useState('')
   const [movieList, setMovieList] = useState([])
   const [timeoutId,setTimeoutId] = useState()
-  const [showMovie,setShowMovie] = useState([])
-  const API_KEY = '45465dff'
-  const SHOW_MOVIE_KEY = '47cb32d7a40a71c6ac4940b6e81611d0'
-  const postApi = 'https://api.themoviedb.org/3/movie/popular?api_key=47cb32d7a40a71c6ac4940b6e81611d0&language=en-US&page=1'
-   
-  fetch(postApi)
-   .then((res) => {
-    return res.json()
-   })
-   .then((post) => {
-    console.log(post.results);
-   })
 
+  const [showMovie,setShowMovie] = useState([])
+  const [showTop,setShowTop] = useState([])
+  const [showUpComing,setShowUpComing] = useState([])
+  const [showLatest,setShowLatest] = useState([])
+
+  const API_KEY = '45465dff'
+  const postApi = 'https://api.themoviedb.org/3/movie/popular?api_key=47cb32d7a40a71c6ac4940b6e81611d0&language=en-US&page=1'
+  const topRating ='https://api.themoviedb.org/3/movie/top_rated?api_key=47cb32d7a40a71c6ac4940b6e81611d0&language=en-US&page=1'
+  const upComing ='https://api.themoviedb.org/3/movie/upcoming?api_key=47cb32d7a40a71c6ac4940b6e81611d0&language=en-US&page=1'
+  const latest ='https://api.themoviedb.org/3/movie/now_playing?api_key=47cb32d7a40a71c6ac4940b6e81611d0&language=en-US&page=1'
+ 
+  useEffect(() => {
+    fetch(latest)
+    .then((res) => {
+     return res.json()
+    })
+    .then((post) => {
+      setShowLatest(post.results);
+    })
+  },[])
+
+  useEffect(() => {
+    fetch(upComing)
+    .then((res) => {
+     return res.json()
+    })
+    .then((post) => {
+      setShowUpComing(post.results);
+    })
+  },[])
+
+  useEffect(() => {
+    fetch(topRating)
+    .then((res) => {
+     return res.json()
+    })
+    .then((post) => {
+      setShowTop(post.results);
+    })
+  },[])
+
+  useEffect(() => {
+    fetch(postApi)
+    .then((res) => {
+     return res.json()
+    })
+    .then((post) => {
+      setShowMovie(post.results);
+    })
+  },[])
+
+  
   const fetchData = async(searchString) => {
     const response = await axios.get(`https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`)
       setMovieList(response.data.Search)
@@ -53,7 +93,7 @@ const App = () => {
     : ""}
    </MovieListContainer>
 
- <MainContent />
+ <MainContent showMovie={showMovie} showTop={showTop} showUpComing={showUpComing} showLatest={showLatest}/>
     </>
   )
 }

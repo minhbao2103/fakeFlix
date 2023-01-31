@@ -1,33 +1,27 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+
+import React from 'react'
 import styled from 'styled-components'
+import { Route , Routes } from 'react-router-dom'
+import Popular from './Popular'
+import Trending from './Trending';
+import Upcoming from './UpComing';
+import Loves from './Loves';
 
-
-const MainContent = () => {
-    const movies = [
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbz-YbCaWY8W9NHRar7nrc-tF_ZI6HZbqsmw&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbz-YbCaWY8W9NHRar7nrc-tF_ZI6HZbqsmw&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbz-YbCaWY8W9NHRar7nrc-tF_ZI6HZbqsmw&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbz-YbCaWY8W9NHRar7nrc-tF_ZI6HZbqsmw&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbz-YbCaWY8W9NHRar7nrc-tF_ZI6HZbqsmw&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbz-YbCaWY8W9NHRar7nrc-tF_ZI6HZbqsmw&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbz-YbCaWY8W9NHRar7nrc-tF_ZI6HZbqsmw&usqp=CAU',
-    ]
-
+const MainContent = ({showMovie,showTop,showUpComing,showLatest}) => {
   return (
     <MovieRowContainer>
-    <h1 className='heading'>Popular</h1>
-    <MovieSlider>
-    {
-        movies.map((movie,index) => (
-            <div key={index} className='movieItem'>
-            <img src={movie} alt=''/>
-            <div className='movieName'>movie name</div>
-        </div>
-        ))
-    }
-    </MovieSlider>
+    <div className='heading'>
+        <span><a href='/'>Popular</a></span>
+        <span><a href='/trending'>Trending</a></span>
+        <span><a href='/upcoming'>Upcoming</a></span>
+        <span><a href='/latest'>Latest</a></span>
+    </div>
+    <Routes>
+        <Route path='/' element={<Popular showMovie={showMovie}/>}/>
+        <Route path='/trending' element={<Trending showTop={showTop}/>}/>
+        <Route path='/upcoming' element={<Upcoming showUpComing={showUpComing} />}/>
+        <Route path='/latest' element={<Loves showLatest={showLatest} />}/>
+    </Routes>
     </MovieRowContainer>
   )
 }
@@ -39,52 +33,18 @@ const MovieRowContainer = styled.div`
     color: white;
     width: 100%;
     height: 100%;
-    overflow: scroll;
 
     .heading {
-        font-size: 16px;
+        font-size: 18px;
         user-select: none;
-    }
-`
-const MovieSlider = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    gap: 6px;
-    transition: all 0.3s linear;
-    user-select: none;
-    padding:8px 0px;
-    scroll-behavior: smooth;
-    flex-wrap: wrap;
-    overflow: auto;
-
-    .movieItem {
-        transform: scale(1);
-        max-width: 160px;
-        height: 100%;
-        max-height: 360px;
-        transition: all 0.3s linear;
-        user-select: none;
-        border-radius: 4px;
-        margin: 0px 10px;
-        padding: 8px 6px;
-
-        &:hover {
-            transform: scale(1.05);
-            z-index: 10;
-        }
-
-    img {
-        width :160px;
-        height: 100%;
-    }
-
-    .movieName {
         text-align: center;
-        white-space: nowrap; 
-        overflow: hidden;
-        text-overflow:  ellipsis; 
-        font-size: 10px;
-    }
+      span {
+        margin: 0px 8px;
+        padding: 0px 8px;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
     }
 `
